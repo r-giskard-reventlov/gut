@@ -1,0 +1,19 @@
+<ion-view view-title="Chronology">
+  <ion-content>
+    <!--<a href='#/tab/chronology/events'>add</a>-->
+    <button class="button button-icon ion-compose" ng-click="navigateAddEventForm()"></button>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="event in events" type="item-text-wrap" href="#/tab/chronology/{{event.id}}">
+	<h2>{{event.food}}
+        <ion-option-button class="button-assertive" ng-click="remove(event)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <!--
+    <button class="button" ng-click="takePicture()">Take Picture</button><br/>
+    <button class="button" ng-click="getPicture()">Open Gallery</button>
+    -->
+  </ion-content>
+
+</ion-view>

@@ -39,21 +39,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 	    }
 	}
     })
-    .state('tab.chats', {
-	url: '/chats',
+    .state('tab.chronology', {
+	url: '/chronology',
 	views: {
-            'tab-chats': {
-		templateUrl: 'templates/tab-chats.html',
-		controller: 'SnapCtrl'
+            'tab-chronology': {
+		templateUrl: 'templates/tab-chronology.html',
+		controller: 'ChronologyCtrl'
+            }
+	}
+    })
+    .state('tab.event-entry', {
+	url: '/chronology/events',
+	views: {
+            'tab-chronology': {
+		templateUrl: 'templates/add-event.html',
+		controller: 'EventCtrl'
             }
 	}
     })
     .state('tab.chat-detail', {
-	url: '/chats/:chatId',
+	url: '/chronology/:eventId',
 	views: {
-            'tab-chats': {
-		templateUrl: 'templates/chat-detail.html',
-		controller: 'ChatDetailCtrl'
+            'tab-chronology': {
+		templateUrl: 'templates/event.html',
+		controller: 'EventCtrl'
             }
 	}
     })

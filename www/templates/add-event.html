@@ -1,0 +1,19 @@
+<ion-view view-title="Add Event">
+  <ion-content class="padding">
+    <form ng-submit="addEvent(event)">
+        <div class="list">
+	  <label class="item item-input">
+	    <input type="date" placeholder="Date" ng-model="event.time" />
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Food" ng-model="event.food" />
+	  </label>
+	</div>
+	<div class="">
+	  <button class="button button-positive button-full">
+	    Record Event
+	  </button>
+	</div>
+    </form>
+  </ion-content>
+</ion-view>
