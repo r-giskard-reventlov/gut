@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
 	    );
 	};
 */
-	$scope.navigateAddEventForm = function() {
+	$scope.navigateAddEventFoodForm = function() {
 	    $state.go('tab.event-entry');
 	};
 	
@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
 
     .controller('ChatDetailCtrl', function($scope, $stateParams) {})
 
-    .controller('EventCtrl', function($scope) {
+    .controller('EventCtrl', function($scope, Food) {
 	$scope.event = {
 	    id: 1,
 	    time: "24/12/1982 10:50:32",
@@ -64,6 +64,20 @@ angular.module('starter.controllers', [])
 	    food: "Beef burger"
 	};
 
+	$scope.searchFood = function(food) {
+	    //alert('change');
+	    console.log('searching for food: ' + food);
+   	    $scope.foods = Food.query();
+	    /*
+	    $http.get('data.json').success(function(data, status, headers, config) {
+		$scope.items = data.data;
+	    }).error(function(data, status, headers, config) {
+		console.log("No data found..");
+	    });
+	    */
+	};
+
+	
 	$scope.addEvent = function(event) {
 	    console.log('added event');
 	};

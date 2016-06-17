@@ -1,10 +1,9 @@
 <ion-view view-title="Chronology">
   <ion-nav-buttons side="right">
-    <button class="button button-icon ion-compose" ng-click="navigateAddEventForm()"></button>
+      <button class="button button-icon ion-pizza" ng-click="navigateAddEventFoodForm()"></button>
+      <button class="button button-icon ion-sad-outline" ng-click="navigateAddEventSymptomForm()"></button>
   </ion-nav-buttons>
   <ion-content>
-    <!--<a href='#/tab/chronology/events'>add</a>-->
-    <!--<button class="button button-icon ion-compose" ng-click="navigateAddEventForm()"></button>-->
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="event in events" type="item-text-wrap" href="#/tab/chronology/{{event.id}}">
 	<h2>{{event.food}}
@@ -13,6 +12,7 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
+
     <!--
     <button class="button" ng-click="takePicture()">Take Picture</button><br/>
     <button class="button" ng-click="getPicture()">Open Gallery</button>

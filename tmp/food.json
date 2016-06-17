@@ -1,0 +1,19 @@
+{
+    "foods": [
+	{
+	    "id": 1,
+	    "name": "peanut butter",
+	    "ingredients": [
+		"peanut",
+		"oliveoil",
+		"sodium"
+		]
+	},
+	{
+	    "id": 2,
+	    "name": "bacon",
+	    "ingredients": []
+	}
+    ]
+}
+

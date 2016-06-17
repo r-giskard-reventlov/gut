@@ -3,23 +3,16 @@
     <form ng-submit="addEvent(event)">
       <label class="item item-input">
 	<i class="icon ion-search placeholder-icon"></i>
-	<input type="search" placeholder="Search">
+	<input type="search" placeholder="Enter food" ng-model="food" ng-change="searchFood()" />
       </label>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="food in foods" type="item-text-wrap">
+        <h2>{{food.name}}</h2>
         <!--
-        <div class="list">
-	  <label class="item item-input">
-	    <input type="date" placeholder="Date" ng-model="event.time" />
-	  </label>
-	  <label class="item item-input">
-	    <input type="text" placeholder="Food" ng-model="event.food" />
-	  </label>
-	</div>
-	<div class="">
-	  <button class="button button-positive button-full">
-	    Record Event
-	  </button>
-	</div>
+        <ion-option-button class="button-assertive" ng-click="remove(event)">
+          Delete
+        </ion-option-button>
 	-->  
+      </ion-item>
     </form>
   </ion-content>
 </ion-view>
