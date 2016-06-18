@@ -10,7 +10,8 @@ angular.module('starter', ['ionic',
 			   'starter.controllers',
 			   'starter.services',
 			   'camera.service',
-			   'food.service'])
+			   'food.service',
+			   'chronology.service'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -53,13 +54,25 @@ angular.module('starter', ['ionic',
             }
 	}
     })
-    .state('tab.event-entry', {
-	url: '/chronology/events',
+    .state('tab.event-food-search', {
+	url: '/chronology/event/food-search',
 	views: {
             'tab-chronology': {
-		templateUrl: 'templates/add-event.html',
-		controller: 'EventCtrl'
+		templateUrl: 'templates/event-food-search.html',
+		controller: 'EventFoodSearchCtrl'
             }
+	}
+    })
+    .state('tab.event-food-confirm', {
+	url: '/chronology/event/food-confirm',
+	views: {
+            'tab-chronology': {
+		templateUrl: 'templates/event-food-confirm.html',
+		controller: 'EventFoodConfirmCtrl'
+            }
+	},
+	params: {
+	    foodId: null
 	}
     })
     .state('tab.chat-detail', {

@@ -1,0 +1,21 @@
+{
+    "chronology": [
+	{
+	    "id": 1,
+	    "foodId": 1,
+	    "foodDescription": "peanut butter",
+	    "ingredients": [
+		"peanut",
+		"oliveoil",
+		"sodium"
+		]
+	},
+	{
+	    "id": 2,
+	    "foodId": 2,
+	    "foodDescription": "bacon",
+	    "ingredients": []
+	}
+    ]
+}
+

@@ -2,8 +2,8 @@ angular.module('starter.controllers', [])
 
     .controller('DashCtrl', function($scope) {})
 
-    .controller('ChronologyCtrl', function($scope, Camera, $state) {
-/*	
+    .controller('ChronologyCtrl', function($scope, Chronology, $state) {
+        /*	
         $scope.takePicture = function (options) {
 	    var options = {
 		quality : 75,
@@ -20,73 +20,46 @@ angular.module('starter.controllers', [])
 		}
 	    );
 	};
-*/
-	$scope.navigateAddEventFoodForm = function() {
-	    $state.go('tab.event-entry');
+        */
+
+	$scope.events = Chronology.query();
+
+	$scope.remove = function(event) {
+	    console.log('request to remove event: ' + JSON.stringify(event));
 	};
 	
-	$scope.events = [
-	    {
-		id: 1,
-		time: "24/12/1982 10:50:32",
-		type: "EATEN",
-		food: "Beef burger"
-	    },
-	    {
-		id: 2,
-		time: "25/12/1982 08:30:32",
-		type: "EATEN",
-		food: "Pizza"
-	    },
-	    {
-		id: 3,
-		time: "26/12/1982 15:12:45",
-		type: "EATEN",
-		food: "Beef burger"
-	    },
-	    {
-		id: 4,
-		time: "27/12/1982 12:40:32",
-		type: "EATEN",
-		food: "Cheese"
-	    }
-	];
-
+	$scope.navigateAddEventFoodForm = function() {
+	    $state.go('tab.event-food-search');
+ 	};
     })
 
     .controller('ChatDetailCtrl', function($scope, $stateParams) {})
 
-    .controller('EventCtrl', function($scope, Food) {
-	$scope.event = {
-	    id: 1,
-	    time: "24/12/1982 10:50:32",
-	    type: "EATEN",
-	    food: "Beef burger"
+    .controller('EventFoodSearchCtrl', function($scope, Food, $state) {
+	$scope.selectFood = function(food) {
+	    console.log('selected food: ' + JSON.stringify(food));
+	    $state.go('tab.event-food-confirm', { foodId: food.id });
+	    
 	};
 
-	$scope.searchFood = function(food) {
-	    //alert('change');
+	$scope.getFoods = function(food) {
 	    console.log('searching for food: ' + food);
    	    $scope.foods = Food.query();
-	    /*
-	    $http.get('data.json').success(function(data, status, headers, config) {
-		$scope.items = data.data;
-	    }).error(function(data, status, headers, config) {
-		console.log("No data found..");
-	    });
-	    */
-	};
-
-	
-	$scope.addEvent = function(event) {
-	    console.log('added event');
-	};
-
-	$scope.remove = function(event) {
-	    alert('test remove');
 	};
     })
 
-    .controller('AccountCtrl', function($scope) {});
+    .controller('EventFoodConfirmCtrl', function($scope, $stateParams, Food) {
+	console.log('test.. food controller init, params [' + JSON.stringify($stateParams) + ']');
+	console.log('food id: ' + $stateParams.foodId);
+	
+	$scope.food = Food.get({id: $stateParams.foodId});
+
+	$scope.addEventToChronology = function() {
+	    console.log('adding food: ' + JSON.stringify($scope.food) + ' to chronology');
+	};
+    })
+
+    .controller('AccountCtrl', function($scope) {})
+;
 
 
