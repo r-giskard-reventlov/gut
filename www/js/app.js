@@ -47,6 +47,7 @@ angular.module('starter', ['ionic',
     })
     .state('tab.chronology', {
 	url: '/chronology',
+	cache: false,
 	views: {
             'tab-chronology': {
 		templateUrl: 'templates/tab-chronology.html',

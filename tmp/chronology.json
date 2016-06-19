@@ -1,21 +1,34 @@
 {
-    "chronology": [
-	{
-	    "id": 1,
-	    "foodId": 1,
-	    "foodDescription": "peanut butter",
-	    "ingredients": [
-		"peanut",
-		"oliveoil",
-		"sodium"
-		]
-	},
-	{
-	    "id": 2,
-	    "foodId": 2,
-	    "foodDescription": "bacon",
-	    "ingredients": []
-	}
-    ]
+  "chronology": [
+    {
+      "id": 1,
+      "events": [
+        {
+          "eventId": 1,
+          "foodId": 1,
+          "foodDescription": "peanut butter",
+          "ingredients": [
+            "peanut",
+            "oliveoil",
+            "sodium"
+          ]
+        },
+        {
+          "eventId": 2,
+          "foodId": 1,
+          "foodDescription": "peanut butter",
+          "ingredients": [
+            "peanut",
+            "oliveoil",
+            "sodium"
+          ]
+        },
+        {
+          "eventId": 3,
+          "foodId": 3,
+          "foodDescription": "beef burger"
+        }
+      ]
+    }
+  ]
 }
-
