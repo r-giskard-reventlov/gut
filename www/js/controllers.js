@@ -3,6 +3,7 @@ angular.module('starter.controllers', [])
     .controller('DashCtrl', function($scope) {})
 
     .controller('ChronologyCtrl', function($scope, Chronology, $state) {
+	
 	// TODO : use an array to provide the order of the events,
 	// also use an object to store each event as a property
 	$scope.chronology = Chronology.get({id: 1});
@@ -57,6 +58,8 @@ angular.module('starter.controllers', [])
 	    );
 	};
         */
+
+	$scope.food = "";
 	
 
 	$scope.selectFood = function(food) {

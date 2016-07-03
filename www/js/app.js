@@ -58,6 +58,7 @@ angular.module('starter', ['ionic',
     })
     .state('tab.event-food-search', {
 	url: '/chronology/event/food-search',
+	cache: false,
 	views: {
             'tab-chronology': {
 		templateUrl: 'templates/event-food-search.html',
