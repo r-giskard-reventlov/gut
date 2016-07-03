@@ -3,7 +3,43 @@ angular.module('starter.controllers', [])
     .controller('DashCtrl', function($scope) {})
 
     .controller('ChronologyCtrl', function($scope, Chronology, $state) {
-        /*	
+	// TODO : use an array to provide the order of the events,
+	// also use an object to store each event as a property
+	$scope.chronology = Chronology.get({id: 1});
+
+	$scope.remove = function(event) {
+	    console.log('request to remove event: ' + JSON.stringify(event));
+	    c = Chronology.get({id: 1}, function() {
+		eventIndex = _findEventIndexById(c, event);
+		c.events.splice(eventIndex, 1);
+		Chronology.save(c);
+		$scope.chronology = c;
+	    });
+	};
+	
+	$scope.navigateAddEventFoodForm = function() {
+	    $state.go('tab.event-food-search');
+ 	};
+
+	// TODO : remove in favour of a object, need to also use an
+	// array to provide order of events
+	function _findEventIndexById(chronology, event) {
+	    console.log(chronology);
+	    for(i=0; i<chronology.events.length; i++) {
+		e = chronology.events[i];
+		console.log(e);
+		if(e.id == event.id) {
+		    return i;
+		} 
+	    }
+	    return -1;
+	}
+    })
+
+    .controller('ChatDetailCtrl', function($scope, $stateParams) {})
+
+    .controller('EventFoodSearchCtrl', function($scope, Food, $state) {
+	/*	
         $scope.takePicture = function (options) {
 	    var options = {
 		quality : 75,
@@ -21,32 +57,8 @@ angular.module('starter.controllers', [])
 	    );
 	};
         */
-	console.log('chronology controller called');
-
-	$scope.chronology = Chronology.get({id: 1});
-	$scope.$on('chronology:changed', function() {
-	    $scope.chronology = Chronology.get({id: 1});
-	    // code to run each time view is entered
-	});
-	/*
-	var c = Chronology.get({id: 1}, function() {
-	    $scope.events = c.events;
-	    console.log('viewing events: ' + JSON.stringify(c.events));
-	});
-	*/
-
-	$scope.remove = function(event) {
-	    console.log('request to remove event: ' + JSON.stringify(event));
-	};
 	
-	$scope.navigateAddEventFoodForm = function() {
-	    $state.go('tab.event-food-search');
- 	};
-    })
 
-    .controller('ChatDetailCtrl', function($scope, $stateParams) {})
-
-    .controller('EventFoodSearchCtrl', function($scope, Food, $state) {
 	$scope.selectFood = function(food) {
 	    console.log('selected food: ' + JSON.stringify(food));
 	    $state.go('tab.event-food-confirm', { foodId: food.id });
@@ -59,7 +71,7 @@ angular.module('starter.controllers', [])
 	};
     })
 
-    .controller('EventFoodConfirmCtrl', function($scope, $stateParams, Food, Chronology, $state) {
+    .controller('EventFoodConfirmCtrl', function($scope, $stateParams, Food, Chronology, $state, uuid) {
 	console.log('test.. food controller init, params [' + JSON.stringify($stateParams) + ']');
 	console.log('food id: ' + $stateParams.foodId);
 	
@@ -67,18 +79,12 @@ angular.module('starter.controllers', [])
 
 	$scope.addEventToChronology = function() {
 	    var c = Chronology.get({id: 1}, function() {
-		console.log('chronology: ' + JSON.stringify(c));
-		console.log('events: ' + JSON.stringify(c.events));
-		console.log('event 1: ' + JSON.stringify(c.events[0]));
 		e = {};
-		e.eventId = c.events.length + 1;
+		e.id = uuid.v4();//guid(); //c.events.length + 1;
 		e.foodId = $scope.food.id;
 		e.foodDescription = $scope.food.name;
-		c.events.push(e);
-		console.log('chronology after add: ' + JSON.stringify(c));
-		console.log('adding food: ' + JSON.stringify($scope.food) + ' to chronology');
+		c.events[c.events.length] = e;
 		c.$save().then(function() {
-		    $scope.$emit('chronology:changed');
 		    $state.go('tab.chronology', {}, { reload: true });
 		});
 	    });

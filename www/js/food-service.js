@@ -1,4 +1,4 @@
 angular.module('food.service', [])
     .factory('Food', function($resource) {
-	return $resource('http://Terminus:3000/foods/:id');//, {food: '@id'});
+	return $resource('http://Terminus:3001/foods/:id');
     })

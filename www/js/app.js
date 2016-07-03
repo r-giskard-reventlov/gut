@@ -11,7 +11,8 @@ angular.module('starter', ['ionic',
 			   'starter.services',
 			   'camera.service',
 			   'food.service',
-			   'chronology.service'])
+			   'chronology.service',
+			   'angular-uuid'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
