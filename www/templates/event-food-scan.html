@@ -1,9 +1,7 @@
-<ion-view view-title="Search Food">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon ion-qr-scanner"
-	    ng-click="navigateScanFood()"></button>
-  </ion-nav-buttons>
+<ion-view view-title="Scan Food">
   <ion-content class="padding">
+    <img ng-src="{{pictureOfLabel}}" style="max-width: 100%">
+    <!--
     <label class="item item-input">
       <i class="icon ion-search placeholder-icon"></i>
       <input type="search"
@@ -18,5 +16,6 @@
 	      ng-click="selectFood(food)">
       <h2>{{food.name}}</h2>
     </ion-item>
+    -->  
   </ion-content>
 </ion-view>

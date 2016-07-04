@@ -39,9 +39,26 @@ angular.module('starter.controllers', [])
 
     .controller('ChatDetailCtrl', function($scope, $stateParams) {})
 
-    .controller('EventFoodSearchCtrl', function($scope, Food, $state) {
-	/*	
-        $scope.takePicture = function (options) {
+    .controller('EventFoodScanCtrl', function(Camera, $scope) {
+
+	var options = {
+	    quality : 75,
+	    targetWidth: 200,
+	    targetHeight: 200
+	    //sourceType: 1
+	};
+	Camera.getPicture(options).then(
+	    function(imageUrl) {
+		$scope.pictureOfLabel = imageUrl;
+	    },
+	    function(err) {
+		console.log(err);
+	    }
+	);
+
+
+	/*
+	$scope.takePicture = function (options) {
 	    var options = {
 		quality : 75,
 		targetWidth: 200,
@@ -57,15 +74,19 @@ angular.module('starter.controllers', [])
 		}
 	    );
 	};
-        */
-
-	$scope.food = "";
+	*/
 	
+    })
+
+    .controller('EventFoodSearchCtrl', function(Camera, $scope, Food, $state) {
+	$scope.food = "";
+
+	$scope.navigateScanFood = function() {
+	    $state.go('tab.event-food-scan');
+ 	};
 
 	$scope.selectFood = function(food) {
-	    console.log('selected food: ' + JSON.stringify(food));
 	    $state.go('tab.event-food-confirm', { foodId: food.id });
-	    
 	};
 
 	$scope.getFoods = function(food) {

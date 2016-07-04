@@ -66,6 +66,16 @@ angular.module('starter', ['ionic',
             }
 	}
     })
+    .state('tab.event-food-scan', {
+	url: '/chronology/event/food-scan',
+	cache: false,
+	views: {
+            'tab-chronology': {
+		templateUrl: 'templates/event-food-scan.html',
+		controller: 'EventFoodScanCtrl'
+            }
+	}
+    })
     .state('tab.event-food-confirm', {
 	url: '/chronology/event/food-confirm',
 	views: {
