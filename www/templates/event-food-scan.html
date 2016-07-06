@@ -1,6 +1,13 @@
 <ion-view view-title="Scan Food">
   <ion-content class="padding">
-    <img ng-src="{{pictureOfLabel}}" style="max-width: 100%">
+    <img ng-src="{{pictureOfLabel}}" style="max-width: 100%" />
+    <form name="foodCreate">
+      <label class="item item-input">
+	<input type="text" ng-model="obj.foodName" name="food" rows="4"></input>
+      </label>
+      <button class="button button-block button-positive icon-right ion-chevron-right" ng-click="update(obj)">Create Product</button>
+    </form>
+      
     <!--
     <label class="item item-input">
       <i class="icon ion-search placeholder-icon"></i>

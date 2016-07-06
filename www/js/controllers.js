@@ -41,11 +41,15 @@ angular.module('starter.controllers', [])
 
     .controller('EventFoodScanCtrl', function(Camera, $scope) {
 
+	$scope.obj = {};
+	
 	var options = {
 	    quality : 75,
 	    targetWidth: 200,
-	    targetHeight: 200
-	    //sourceType: 1
+	    targetHeight: 200,
+	    sourceType: 1,
+	    destinationType: 1,
+	    encodingType: 0
 	};
 	Camera.getPicture(options).then(
 	    function(imageUrl) {
@@ -56,6 +60,45 @@ angular.module('starter.controllers', [])
 	    }
 	);
 
+	// do POST on upload url form by http / html form
+	$scope.update = function(obj) {
+	    //if (!$scope.data.uploadurl)
+	    //{
+		// error handling no upload url
+	    //	return;
+	    //}
+	    if (!$scope.pictureOfLabel)
+	    {
+		// error handling no picture given
+		return;
+	    }
+	    var options = new FileUploadOptions();
+	    options.fileKey="ffile";
+	    console.log($scope.pictureOfLabel);
+	    options.fileName=$scope.pictureOfLabel.substr($scope.pictureOfLabel.lastIndexOf('/')+1);
+	    options.mimeType="image/jpeg";
+	    var params = {};
+	    params.foodName = obj.foodName; // some other POST fields
+	    options.params = params;
+
+	    //console.log("new imp: prepare upload now");
+	    var ft = new FileTransfer();
+	    ft.upload(
+		$scope.pictureOfLabel,
+		//encodeURI($scope.data.uploadurl),
+		encodeURI("http://localhost/gut/food"),
+		function(r) {
+		    console.log("upload success");
+		},
+		function(error) {
+		    console.log("upload error source " + error.source);
+		    console.log("upload error target " + error.target);
+		},
+		options
+	    );
+
+	    
+	};
 
 	/*
 	$scope.takePicture = function (options) {
